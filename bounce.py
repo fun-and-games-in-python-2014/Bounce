@@ -2,6 +2,8 @@ from tkinter import *
 import random
 import time
 
+speed = 2
+
 class Ball:
     def __init__(self, canvas, paddle, color):
         self.canvas = canvas
@@ -27,15 +29,15 @@ class Ball:
         self.canvas.move(self.id, self.x, self.y)
         pos = self.canvas.coords(self.id)
         if pos[1] <= 0:
-            self.y = 2
+            self.y = speed
         if pos[3] >= self.canvas_height:
             self.hit_bottom = True
         if self.hit_paddle(pos) == True:
-            self.y = -2
+            self.y = -speed
         if pos[0] <=0:
-            self.x = 2
+            self.x = speed
         if pos[2] >= self.canvas_width:
-            self.x = -2
+            self.x = -speed
 
 class Paddle:
     def __init__(self, canvas, color):
@@ -62,6 +64,18 @@ class Paddle:
         self.x = 2
 
 tk = Tk()
+##btnp = Button(tk, text="Pause", speed=0)
+##btn = Button(tk, text="Easy", speed=1)
+##btn2 = Button(tk, text="Medium", speed=2)
+##btn3 = Button(tk, text="Hard", speed=3)
+##btn4 = Button(tk, text="Demonic", speed=7)
+##btn5 = Button(tk, text="Impossible", speed=10)
+##btnp.pack()
+##btn.pack()
+##btn2.pack()
+##btn3.pack()
+##btn4.pack()
+##btn5.pack()
 tk.title('Bounce')
 tk.resizable(0, 0)
 tk.wm_attributes("-topmost", 1)
