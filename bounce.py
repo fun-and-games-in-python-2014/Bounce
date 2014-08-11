@@ -3,6 +3,43 @@ import random
 import time
 
 speed = 2
+p_speed = 2
+
+def pause():
+    global p_speed
+    global speed
+    speed=0
+    p_speed=0
+
+def espeed():
+    global p_speed
+    global speed
+    speed=.5
+    p_speed=1
+
+def mspeed():
+    global p_speed
+    global speed
+    speed=2
+    p_speed=3
+
+def hspeed():
+    global p_speed
+    global speed
+    speed=3
+    p_speed=3
+
+def impspeed():
+    global p_speed
+    global speed
+    speed=15
+    p_speed=30
+
+def dspeed():
+    global p_speed
+    global speed
+    speed=10
+    p_speed=.5
 
 class Ball:
     def __init__(self, canvas, paddle, color):
@@ -58,24 +95,24 @@ class Paddle:
             self.x = 0
 
     def turn_left(self, evt):
-        self.x = -2
+        self.x = -p_speed
 
     def turn_right(self, evt):
-        self.x = 2
+        self.x = p_speed
 
 tk = Tk()
-##btnp = Button(tk, text="Pause", speed=0)
-##btn = Button(tk, text="Easy", speed=1)
-##btn2 = Button(tk, text="Medium", speed=2)
-##btn3 = Button(tk, text="Hard", speed=3)
-##btn4 = Button(tk, text="Demonic", speed=7)
-##btn5 = Button(tk, text="Impossible", speed=10)
-##btnp.pack()
-##btn.pack()
-##btn2.pack()
-##btn3.pack()
-##btn4.pack()
-##btn5.pack()
+btnp = Button(tk, text="Pause", command=pause)
+btn = Button(tk, text="Easy", command=espeed)
+btn2 = Button(tk, text="Medium", command=mspeed)
+btn3 = Button(tk, text="Hard", command=hspeed)
+btn4 = Button(tk, text="Demonic", command=dspeed)
+btn5 = Button(tk, text="Impossible", command=impspeed)
+btnp.pack()
+btn.pack()
+btn2.pack()
+btn3.pack()
+btn4.pack()
+btn5.pack()
 tk.title('Bounce')
 tk.resizable(0, 0)
 tk.wm_attributes("-topmost", 1)
