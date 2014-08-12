@@ -47,8 +47,9 @@ def restart_game():
         b.alive = True
         pos = b.canvas.coords(b.id)
         b.canvas.move(b.id, 245-pos[0], 100-pos[1])
-
+    
 class Ball:
+    
     def __init__(self, canvas, paddles, color):
         self.canvas = canvas
         self.paddles = paddles
@@ -152,3 +153,7 @@ while True:
     tk.update_idletasks()
     tk.update()
     time.sleep(0.01)
+
+while False:
+    if ball.alive:
+        canvas.create_text(220, 250, text='Game Over', font=('Times', 30))
