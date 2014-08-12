@@ -2,6 +2,45 @@ from tkinter import *
 import random
 import time
 
+speed = 2
+p_speed = 2
+
+def pause():
+    global p_speed
+    global speed
+    speed=0
+    p_speed=0
+
+def espeed():
+    global p_speed
+    global speed
+    speed=.5
+    p_speed=1
+
+def mspeed():
+    global p_speed
+    global speed
+    speed=2
+    p_speed=3
+
+def hspeed():
+    global p_speed
+    global speed
+    speed=3
+    p_speed=3
+
+def impspeed():
+    global p_speed
+    global speed
+    speed=15
+    p_speed=30
+
+def dspeed():
+    global p_speed
+    global speed
+    speed=10
+    p_speed=.5
+
 class Ball:
     def __init__(self, canvas, paddles, color):
         self.canvas = canvas
@@ -28,15 +67,15 @@ class Ball:
         self.canvas.move(self.id, self.x, self.y)
         pos = self.canvas.coords(self.id)
         if pos[1] <= 0:
-            self.y = 2
+            self.y = speed
         if pos[3] >= self.canvas_height:
             self.hit_bottom = True
         if self.hit_paddle(pos) == True:
-            self.y = -2
+            self.y = -speed
         if pos[0] <=0:
-            self.x = 2
+            self.x = speed
         if pos[2] >= self.canvas_width:
-            self.x = -2
+            self.x = -speed
 
 class Paddle:
     def __init__(self, canvas, color, ghost=None):
@@ -58,16 +97,30 @@ class Paddle:
             self.x = -self.x
 
     def turn_left(self, evt):
-        self.x = -2
+        self.x =  -p_speed
         if self.ghost:
             self.ghost.turn_right(evt)
 
     def turn_right(self, evt):
-        self.x = 2
+        self.x = p_speed
         if self.ghost:
             self.ghost.turn_left(evt)
 
 tk = Tk()
+btnp = Button(tk, text="Pause", command=pause)
+btn = Button(tk, text="Easy", command=espeed)
+btn2 = Button(tk, text="Medium", command=mspeed)
+btn3 = Button(tk, text="Hard", command=hspeed)
+btn4 = Button(tk, text="Demonic", command=dspeed)
+btn5 = Button(tk, text="Impossible", command=impspeed)
+btnq = Button(tk, text="Quit", command=tk.destroy)
+btnq.pack()
+btnp.pack()
+btn.pack()
+btn2.pack()
+btn3.pack()
+btn4.pack()
+btn5.pack()
 tk.title('Bounce')
 tk.resizable(0, 0)
 tk.wm_attributes("-topmost", 1)
@@ -79,6 +132,7 @@ paddle2 = Paddle(canvas, 'green')
 paddle = Paddle(canvas, 'blue',paddle2)
 ball  = Ball(canvas, [paddle,paddle2], 'red')
 ball2 = Ball(canvas, [paddle,paddle2], 'yellow')
+
 
 while 1:
     if ball.hit_bottom == False:
