@@ -41,6 +41,13 @@ def dspeed():
     speed=10
     p_speed=.5
 
+def restart_game():
+    global balls
+    for b in balls:
+        b.alive = True
+        pos = b.canvas.coords(b.id)
+        b.canvas.move(b.id, 245-pos[0], 100-pos[1])
+
 class Ball:
     def __init__(self, canvas, paddles, color):
         self.canvas = canvas
@@ -53,7 +60,7 @@ class Ball:
         self.y = -3
         self.canvas_height = self.canvas.winfo_height()
         self.canvas_width = self.canvas.winfo_width()
-        self.hit_bottom = False
+        self.alive = True
 
     def hit_paddle(self, pos):
         for paddle in self.paddles:
@@ -69,7 +76,7 @@ class Ball:
         if pos[1] <= 0:
             self.y = speed
         if pos[3] >= self.canvas_height:
-            self.hit_bottom = True
+            self.alive = False
         if self.hit_paddle(pos) == True:
             self.y = -speed
         if pos[0] <=0:
@@ -114,6 +121,7 @@ btn3 = Button(tk, text="Hard", command=hspeed)
 btn4 = Button(tk, text="Demonic", command=dspeed)
 btn5 = Button(tk, text="Impossible", command=impspeed)
 btnq = Button(tk, text="Quit", command=tk.destroy)
+btn1 = Button(tk, text="Restart", command=restart_game)
 btnq.pack()
 btnp.pack()
 btn.pack()
@@ -121,6 +129,7 @@ btn2.pack()
 btn3.pack()
 btn4.pack()
 btn5.pack()
+btn1.pack()
 tk.title('Bounce')
 tk.resizable(0, 0)
 tk.wm_attributes("-topmost", 1)
@@ -132,10 +141,10 @@ paddle2 = Paddle(canvas, 'green')
 paddle = Paddle(canvas, 'blue',paddle2)
 ball  = Ball(canvas, [paddle,paddle2], 'red')
 ball2 = Ball(canvas, [paddle,paddle2], 'yellow')
+balls = [ball,ball2]
 
-
-while 1:
-    if ball.hit_bottom == False:
+while True:
+    if ball.alive:
         ball.draw()
         paddle2.draw()
         ball2.draw()
