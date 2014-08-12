@@ -53,7 +53,7 @@ class Ball:
     def __init__(self, canvas, paddles, color):
         self.canvas = canvas
         self.paddles = paddles
-        self.id = canvas.create_oval(10, 10, 25, 25, fill=color)
+        self.id = canvas.create_oval(50, 50, 25, 25, fill=color)
         self.canvas.move(self.id, 245, 100)
         starts = [-3, -2, -1, 1, 2, 3,]
         random.shuffle(starts)
@@ -134,7 +134,7 @@ btn2.pack()
 btn3.pack()
 btn4.pack()
 btn5.pack()
-btn1.pack()
+btn1.pack({"side": "left"})
 tk.title('Bounce')
 tk.resizable(0, 0)
 tk.wm_attributes("-topmost", 1)
