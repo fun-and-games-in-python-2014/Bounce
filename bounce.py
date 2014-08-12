@@ -143,9 +143,30 @@ canvas.pack()
 tk.update()
 
 def menu(evt):
-    pass
+    tk = Tk()
+    btnp = Button(tk, text="Pause", command=pause)
+    btn = Button(tk, text="Easy", command=espeed)
+    btn2 = Button(tk, text="Medium", command=mspeed)
+    btn3 = Button(tk, text="Hard", command=hspeed)
+    btn4 = Button(tk, text="Demonic", command=dspeed)
+    btn5 = Button(tk, text="Impossible", command=impspeed)
+    btnq = Button(tk, text="Quit", command=tk.destroy)
+    btn1 = Button(tk, text="Restart", command=restart_game)
+    btnq.pack({"side": "left"})
+    btnp.pack({"side": "left"})
+    btn.pack()
+    btn2.pack()
+    btn3.pack()
+    btn4.pack()
+    btn5.pack()
+    btn1.pack()
+    tk.title('Bounce')
+    tk.resizable(0, 0)
+    tk.wm_attributes("-topmost", 1)
+    tk.update()
+    
 
-canvas.bind_all('<KeyPress-x>', menu)
+canvas.bind_all('<KeyPress-m>', menu)
 
 paddle2 = Paddle(canvas, 'green')
 paddle = Paddle(canvas, 'blue',paddle2)
