@@ -4,42 +4,56 @@ import time
 
 speed = 2
 p_speed = 2
+##pause = 1
 
 def pause():
+##    global pause
+##    pause=1
     global p_speed
     global speed
-    speed=0
-    p_speed=0
+    speed = 
+    p_speed = 0
+
 
 def espeed():
     global p_speed
     global speed
     speed=.5
     p_speed=1
+##    global pause
+##    pause=0
 
 def mspeed():
     global p_speed
     global speed
     speed=2
     p_speed=3
+##    global pause
+##    pause=0
 
 def hspeed():
     global p_speed
     global speed
     speed=3
     p_speed=3
+##    global pause
+##    pause=0
 
 def impspeed():
     global p_speed
     global speed
     speed=15
     p_speed=30
+##    global pause
+##    pause=0
 
 def dspeed():
     global p_speed
     global speed
     speed=10
     p_speed=.5
+##    global pause
+##    pause=0
 
 def restart_game():
     global balls
@@ -53,7 +67,7 @@ class Ball:
     def __init__(self, canvas, paddles, color):
         self.canvas = canvas
         self.paddles = paddles
-        self.id = canvas.create_oval(10, 10, 25, 25, fill=color)
+        self.id = canvas.create_oval(50, 50, 25, 25, fill=color)
         self.canvas.move(self.id, 245, 100)
         starts = [-3, -2, -1, 1, 2, 3,]
         random.shuffle(starts)
@@ -134,7 +148,7 @@ btn2.pack()
 btn3.pack()
 btn4.pack()
 btn5.pack()
-btn1.pack()
+btn1.pack({"side": "left"})
 tk.title('Bounce')
 tk.resizable(0, 0)
 tk.wm_attributes("-topmost", 1)
@@ -174,6 +188,22 @@ ball  = Ball(canvas, [paddle,paddle2], 'red')
 ball2 = Ball(canvas, [paddle,paddle2], 'yellow')
 balls = [ball,ball2]
 
+##if pause==0:
+
+##  while True:
+##        if ball.alive:
+##        ball.draw()
+##        paddle2.draw()
+##        ball2.draw()
+##        paddle.draw()
+##    tk.update_idletasks()
+##    tk.update()
+##    time.sleep(0.01)
+##
+##  while False:
+##        if ball.alive:
+##            canvas.create_text(220, 250, text='Game Over', font=('Times', 30))
+
 while True:
     if ball.alive:
         ball.draw()
@@ -187,3 +217,4 @@ while True:
 while False:
     if ball.alive:
         canvas.create_text(220, 250, text='Game Over', font=('Times', 30))
+
