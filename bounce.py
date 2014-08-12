@@ -11,7 +11,7 @@ def pause():
 ##    pause=1
     global p_speed
     global speed
-    speed = 
+    speed = 0
     p_speed = 0
 
 
@@ -103,7 +103,7 @@ class Paddle:
     def __init__(self, canvas, color, ghost=None):
         self.canvas = canvas
         self.id = canvas.create_rectangle(0, 0, 100, 10, fill=color)
-        self.canvas.move(self.id, 200, 300)
+        self.canvas.move(self.id, 200, 350)
         self.x =0
         self.ghost = ghost
         self.canvas_width = self.canvas.winfo_width()
@@ -133,22 +133,12 @@ class Paddle:
         self.x = 0
 
 tk = Tk()
-btnp = Button(tk, text="Pause", command=pause)
-btn = Button(tk, text="Easy", command=espeed)
-btn2 = Button(tk, text="Medium", command=mspeed)
-btn3 = Button(tk, text="Hard", command=hspeed)
-btn4 = Button(tk, text="Demonic", command=dspeed)
-btn5 = Button(tk, text="Impossible", command=impspeed)
-btnq = Button(tk, text="Quit", command=tk.destroy)
-btn1 = Button(tk, text="Restart", command=restart_game)
-btnq.pack({"side": "left"})
-btnp.pack({"side": "left"})
-btn.pack()
-btn2.pack()
-btn3.pack()
-btn4.pack()
-btn5.pack()
-btn1.pack({"side": "left"})
+btnp = Button(tk, text="                                                      Pause                                                        ", command=pause)
+btnq = Button(tk, text="                                                       Quit                                                        ", command=tk.destroy)
+btn1 = Button(tk, text="                                                      Restart                                                      ", command=restart_game)
+btnq.pack({"side": "bottom"})
+btnp.pack({"side": "bottom"})
+btn1.pack({"side": "bottom"})
 tk.title('Bounce')
 tk.resizable(0, 0)
 tk.wm_attributes("-topmost", 1)
@@ -158,23 +148,19 @@ tk.update()
 
 def menu(evt):
     tk = Tk()
-    btnp = Button(tk, text="Pause", command=pause)
-    btn = Button(tk, text="Easy", command=espeed)
-    btn2 = Button(tk, text="Medium", command=mspeed)
-    btn3 = Button(tk, text="Hard", command=hspeed)
-    btn4 = Button(tk, text="Demonic", command=dspeed)
-    btn5 = Button(tk, text="Impossible", command=impspeed)
-    btnq = Button(tk, text="Quit", command=tk.destroy)
-    btn1 = Button(tk, text="Restart", command=restart_game)
-    btnq.pack({"side": "left"})
-    btnp.pack({"side": "left"})
-    btn.pack()
+    btn6 = Button(tk, text="                               Easy                                 ", command=espeed)
+    btn2 = Button(tk, text="                            Medium                              ", command=mspeed)
+    btn3 = Button(tk, text="                              Hard                                ", command=hspeed)
+    btn4 = Button(tk, text="                            Demonic                             ", command=dspeed)
+    btn5 = Button(tk, text="                           Impossible                           ", command=impspeed)
+    btnq = Button(tk, text="                               Quit                                 ", command=tk.destroy)
+    btnq.pack({"side": "bottom"})
+    btn6.pack()
     btn2.pack()
     btn3.pack()
     btn4.pack()
     btn5.pack()
-    btn1.pack()
-    tk.title('Bounce')
+    tk.title('Bounce Menu')
     tk.resizable(0, 0)
     tk.wm_attributes("-topmost", 1)
     tk.update()
