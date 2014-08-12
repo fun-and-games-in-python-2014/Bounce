@@ -170,7 +170,7 @@ def menu(evt):
 
 canvas.bind_all('<KeyPress-m>', menu)
 
-game_done = None
+game_over = None
 paddle2 = Paddle(canvas, 'green')
 paddle = Paddle(canvas, 'blue',paddle2)
 ball  = Ball(canvas, [paddle,paddle2], 'red')
@@ -195,6 +195,8 @@ while True:
         paddle2.draw()
         ball2.draw()
         paddle.draw()
+    elif game_over:
+        pass # Do nothing, but the game is still over
     else:
         game_over = canvas.create_text(220, 250, text='Game Over', font=('Times', 30))
     tk.update_idletasks()
