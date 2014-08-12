@@ -107,6 +107,8 @@ btn2 = Button(tk, text="Medium", command=mspeed)
 btn3 = Button(tk, text="Hard", command=hspeed)
 btn4 = Button(tk, text="Demonic", command=dspeed)
 btn5 = Button(tk, text="Impossible", command=impspeed)
+btnq = Button(tk, text="Quit", command=tk.destroy)
+btnq.pack()
 btnp.pack()
 btn.pack()
 btn2.pack()
@@ -122,6 +124,7 @@ tk.update()
 
 paddle = Paddle(canvas, 'blue')
 ball = Ball(canvas, paddle, 'red')
+
 
 while 1:
     if ball.hit_bottom == False:
