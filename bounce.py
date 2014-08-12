@@ -42,14 +42,16 @@ def dspeed():
     p_speed=.5
 
 def restart_game():
-    global balls
+    global balls,canvas,game_over
     for b in balls:
         b.alive = True
         pos = b.canvas.coords(b.id)
         b.canvas.move(b.id, 245-pos[0], 100-pos[1])
-    
-class Ball:
-    
+    if game_over:
+        canvas.delete(game_over)
+        game_over = None
+
+class Ball:    
     def __init__(self, canvas, paddles, color):
         self.canvas = canvas
         self.paddles = paddles
@@ -147,6 +149,7 @@ def menu(evt):
 
 canvas.bind_all('<KeyPress-x>', menu)
 
+game_done = None
 paddle2 = Paddle(canvas, 'green')
 paddle = Paddle(canvas, 'blue',paddle2)
 ball  = Ball(canvas, [paddle,paddle2], 'red')
@@ -159,10 +162,8 @@ while True:
         paddle2.draw()
         ball2.draw()
         paddle.draw()
+    else:
+        game_over = canvas.create_text(220, 250, text='Game Over', font=('Times', 30))
     tk.update_idletasks()
     tk.update()
     time.sleep(0.01)
-
-while False:
-    if ball.alive:
-        canvas.create_text(220, 250, text='Game Over', font=('Times', 30))
