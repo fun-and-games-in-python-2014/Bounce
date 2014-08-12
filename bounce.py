@@ -95,6 +95,7 @@ class Paddle:
         self.canvas_width = self.canvas.winfo_width()
         self.canvas.bind_all('<KeyPress-Left>', self.turn_left)
         self.canvas.bind_all('<KeyPress-Right>', self.turn_right)
+        self.canvas.bind_all('<KeyPress-Down>', self.stop)
 
     def draw(self):
         self.canvas.move(self.id, self.x, 0)
@@ -114,6 +115,9 @@ class Paddle:
         if self.ghost:
             self.ghost.turn_left(evt)
 
+    def stop(self, evt):
+        self.x = 0
+
 tk = Tk()
 btnp = Button(tk, text="Pause", command=pause)
 btn = Button(tk, text="Easy", command=espeed)
@@ -123,8 +127,8 @@ btn4 = Button(tk, text="Demonic", command=dspeed)
 btn5 = Button(tk, text="Impossible", command=impspeed)
 btnq = Button(tk, text="Quit", command=tk.destroy)
 btn1 = Button(tk, text="Restart", command=restart_game)
-btnq.pack()
-btnp.pack()
+btnq.pack({"side": "left"})
+btnp.pack({"side": "left"})
 btn.pack()
 btn2.pack()
 btn3.pack()
@@ -137,6 +141,11 @@ tk.wm_attributes("-topmost", 1)
 canvas=Canvas(tk, width=500, height=400, bd=0, highlightthickness=0)
 canvas.pack()
 tk.update()
+
+def menu(evt):
+    pass
+
+canvas.bind_all('<KeyPress-x>', menu)
 
 paddle2 = Paddle(canvas, 'green')
 paddle = Paddle(canvas, 'blue',paddle2)
